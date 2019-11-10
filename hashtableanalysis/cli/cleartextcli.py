@@ -1,4 +1,5 @@
-from ..hashtableanalys import cleartext
+from hashtableanalysis.cleartext import cleartext
 
 if __name__ == '__main__':
-    print('git')
+    text = "Ala ma kota"
+    print(cleartext(text))
