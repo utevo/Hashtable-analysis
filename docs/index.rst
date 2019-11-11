@@ -10,6 +10,8 @@ Welcome to HashtableAnalysis's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   projekt_wstepny
+
 
 
 Indices and tables
