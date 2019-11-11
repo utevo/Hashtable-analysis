@@ -3,6 +3,7 @@ Projekt Wstępny
 
 Treść zadania:
 --------------
+
 Przedmiotem analizy jest tablica mieszająca: tablica przechowuje rekordy zawierające napisy. Długość tablicy jest ograniczona arbitralnie przez pewną stałą K. Dla danego napisu s obliczamy k=M(s) i umieszczamy strukturę reprezentującą napis w tablicy mieszającej: H[k]. W przypadku kolizji funkcji mieszającej (H[k] zajęte) reprezentujące napis s struktury danych zapisywane są w sposób alternatywny zobacz warianty). Przedmiotem implementacji powinno być: dodanie i usunięcie elementów w H[]. Wybór funkcji mieszającej M(s) do decyzji projektanta - ale patrz wariant 3.
 
 **W13:**
@@ -19,12 +20,17 @@ Zastosować jedną funkcję mieszającą; dodatkowo przeprowadzić analizę dla 
 
 
 
-## Opis funkcji mieszającej:
+Opis funkcji mieszającej:
+-------------------------
+
 Zastosowana zostanie tak zwana "wielomianowa mieszająca funkcja krocząca" (ang. polynomial rolling hash function).
 
-### Wzór:
-	hash(s) = s[0] + s[1] * p + s[2] * p^2 + ... + s[n-1] * p^(n-1) mod m
-			
+**Wzór:**
+::
+
+    hash(s) = s[0] + s[1] * p + s[2] * p^2 + ... + s[n-1] * p^(n-1) mod m
+
+		
 * s - napis dla którego chcemy wyliczyć wartość skrótu
 * n - długość napisu s
 * m - duża stała
@@ -32,9 +38,10 @@ Zastosowana zostanie tak zwana "wielomianowa mieszająca funkcja krocząca" (ang
 
 
 
-## Działanie programu:
-Na wejście program dostaje ciąg napisów. Najpierw dodaje je wszystkie do tablicy. Następnie generuje wewnętrzny stan tablicy mieszającej (jakie napisy się tam znajdują oraz w których są "kubełkach"). Ten stan zwraca użytkownikowi. Jako ostatni krok usuwa wszystkie elementy wcześniej dodane do tablicy.
+Działanie programu:
+-------------------
 
+Na wejście program dostaje ciąg napisów. Najpierw dodaje je wszystkie do tablicy. Następnie generuje wewnętrzny stan tablicy mieszającej (jakie napisy się tam znajdują oraz w których są "kubełkach"). Ten stan zwraca użytkownikowi. Jako ostatni krok usuwa wszystkie elementy wcześniej dodane do tablicy.
 
 
 ## Argumenty i sposób uruchomienia programów:
