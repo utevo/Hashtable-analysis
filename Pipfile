@@ -12,6 +12,7 @@ numpy = "*"
 pandas = "*"
 matplotlib = "*"
 sphinx = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"
