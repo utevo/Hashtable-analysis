@@ -21,3 +21,5 @@ class PolynomialRollingHashFunction(HashFunction):
             multiplier *= self.P
         
         return result
+
+polynomialRollingHashFunction = PolynomialRollingHashFunction()
