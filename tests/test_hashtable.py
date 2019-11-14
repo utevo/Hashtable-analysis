@@ -1,11 +1,10 @@
 """Tests for hashtableanalysis.hashtable."""
 
-from hashtableanalysis.hashtable import hashtable, hashfunction 
+from hashtableanalysis.hashtable.hashfunction import polynomialRollingHashFunction
 
 
 def test_polynomial_rolling_hash_function():
-    hash_function = hashfunction.PolynomialRollingHashFunction()
-
-    input = '123'
-    output = hash_function(input)
-    assert output == 12341
+    assert polynomialRollingHashFunction('12345') == 50546355
+    assert polynomialRollingHashFunction('Hello World') == 840387480
+    assert polynomialRollingHashFunction('VeryVeryVeryVeryVeryLongString') == 462550199
+    assert polynomialRollingHashFunction('We interrupt this program to annoy you and make things generally more irritating.') == 820237747
