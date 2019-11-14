@@ -1,7 +1,7 @@
 from collections import namedtuple
 from typing import List, Callable
 
-from hashtableanalysis.hashtable.hashfunction import HashFunction, PolynomialRollingHashFunction
+from hashtableanalysis.hashtable.hashfunction import polynomialRollingHashFunction
 
 
 class HashtableRecord:
@@ -11,7 +11,7 @@ class HashtableRecord:
 
 class Hashtable:
     _records: List[List[HashtableRecord]]
-    _hash_funcion: HashFunction = PolynomialRollingHashFunction()
+    _hash_funcion: HashFunction = polynomialRollingHashFunction
 
     def __init__(self, lenght=100, width=10):
         self._records = [[HashtableRecord() for __ in range(width)] for __ in range(lenght)]
