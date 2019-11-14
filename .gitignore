@@ -4,3 +4,6 @@ hashtableanalys/data/*
 docs/_build/
 docs/locale/
 build/
+dist/
+*.egg-info/
+.pytest_cache/
