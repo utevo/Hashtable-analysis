@@ -1,6 +1,6 @@
 """Tests for hashtableanalysis.hashtable."""
 
-from hashtableanalysis.hashtable.hashfunction import polynomialRollingHashFunction
+from hashtableanalysis.hashtable.hashfunctions import polynomialRollingHashFunction
 
 
 def test_polynomial_rolling_hash_function():
