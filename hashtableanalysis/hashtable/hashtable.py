@@ -13,8 +13,16 @@ class HashtableRecord:
         self.hash = hash
         self.value = value
 
+    def __eq__(self, other):
+        if not isinstance(other, HashtableRecord):
+            return False
+
+        is_hash_eq = self.hash == other.hash
+        is_value_eq = self.value == other.value
+        return is_hash_eq and is_value_eq
+
     def __repr__(self):
-        return {'hash': self.hash, 'value': self.value}
+        return repr({'hash': self.hash, 'value': self.value})
 
 
 class HashtableFullError(Exception):
@@ -27,7 +35,6 @@ class Hashtable:
     _width: int
     _hash_funcion: HashFunction = polynomialRollingHashFunction
 
-
     def __init__(self, lenght=100, width=10):
         self._records = [[None for __ in range(width)] for __ in range(lenght)]
         self._lenght = lenght
@@ -36,14 +43,15 @@ class Hashtable:
     def add(self, string):
         hash = self._hash_funcion(string)
         new_hash_record = HashtableRecord(hash, string)
-
         index_x = hash % self._lenght
 
         try:
             index_y_of_first_free_record = self._records[index_x].index(None)
-            self._records[index_x][index_y_of_first_free_record] = new_hash_record
+            index_y = index_y_of_first_free_record
         except ValueError as exc:
             raise HashtableFullError() from exc
+        
+        self._records[index_x][index_y] = new_hash_record
 
     def __repr__(self):
         return repr(self._records)
