@@ -1,4 +1,4 @@
-"""Tests for hashtableanalysis.hashtable."""
+"""Tests for hashtableanalysis.hashtable.hashfunction"""
 
 from hashtableanalysis.hashtable.hashfunctions import polynomialRollingHashFunction
 
