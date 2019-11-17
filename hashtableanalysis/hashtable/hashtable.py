@@ -54,10 +54,10 @@ class Hashtable:
             index_y = index_y_of_first_free_record
         except ValueError as exc:
             raise HashtableFullError() from exc
-        
+
         self._records[index_x][index_y] = new_hash_record
-           
-    def discard(self, string):
+
+    def indexes(self, string):
         hash = self._hash_funcion(string)
         searched_hash_record = HashtableRecord(hash, string)
         index_x = hash % self._lenght
@@ -68,17 +68,19 @@ class Hashtable:
         except ValueError as exc:
             raise HashtableEmptyError() from exc
 
+        return index_x, index_y
+
+    def discard(self, string):
+        try:
+            index_x, index_y = self.indexes(string)
+        except HashtableEmptyError:
+            return
         self._records[index_x][index_y] = None
 
     def __contains__(self, string):
-        hash = self._hash_funcion(string)
-        searched_hash_record = HashtableRecord(hash, string)
-        index_x = hash % self._lenght
-
         try:
-            index_y_of_searched_hash_record = self._records[index_x].index(searched_hash_record)
-            index_y = index_y_of_searched_hash_record
-        except ValueError:
+            self.indexes(string)
+        except HashtableEmptyError:
             return False
         return True
 
