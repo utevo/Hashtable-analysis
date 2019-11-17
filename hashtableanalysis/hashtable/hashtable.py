@@ -93,7 +93,3 @@ class Hashtable:
 
     def __repr__(self):
         return repr(self._records)
-
-
-if __name__ == '__main__':
-    hashtable = Hashtable()
