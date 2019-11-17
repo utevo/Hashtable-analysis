@@ -22,7 +22,7 @@ class HashtableRecord:
         return is_hash_eq and is_value_eq
 
     def __repr__(self):
-        return repr({'hash': self.hash, 'value': self.value})
+        return f"HashtableRecord(hash='{self.hash}', value='{self.value}')"
 
 
 class HashtableFullError(Exception):
