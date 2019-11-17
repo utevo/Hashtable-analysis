@@ -88,6 +88,9 @@ class Hashtable:
             return False
         return True
 
+    def __len__(self):
+        return self._len
+
     def __repr__(self):
         return repr(self._records)
 
