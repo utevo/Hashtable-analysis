@@ -70,6 +70,18 @@ class Hashtable:
 
         self._records[index_x][index_y] = None
 
+    def __contains__(self, string):
+        hash = self._hash_funcion(string)
+        searched_hash_record = HashtableRecord(hash, string)
+        index_x = hash % self._lenght
+
+        try:
+            index_y_of_searched_hash_record = self._records[index_x].index(searched_hash_record)
+            index_y = index_y_of_searched_hash_record
+        except ValueError:
+            return False
+        return True
+
     def __repr__(self):
         return repr(self._records)
 
