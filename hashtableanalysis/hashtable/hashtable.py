@@ -29,6 +29,10 @@ class HashtableFullError(Exception):
     pass
 
 
+class HashtableEmptyError(Exception):
+    pass
+
+
 class Hashtable:
     _records: List[List[HashtableRecord]]
     _lenght: int
