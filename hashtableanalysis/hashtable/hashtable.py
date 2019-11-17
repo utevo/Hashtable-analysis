@@ -56,6 +56,19 @@ class Hashtable:
             raise HashtableFullError() from exc
         
         self._records[index_x][index_y] = new_hash_record
+           
+    def discard(self, string):
+        hash = self._hash_funcion(string)
+        searched_hash_record = HashtableRecord(hash, string)
+        index_x = hash % self._lenght
+
+        try:
+            index_y_of_searched_hash_record = self._records[index_x].index(searched_hash_record)
+            index_y = index_y_of_searched_hash_record
+        except ValueError as exc:
+            raise HashtableEmptyError() from exc
+
+        self._records[index_x][index_y] = None
 
     def __repr__(self):
         return repr(self._records)
