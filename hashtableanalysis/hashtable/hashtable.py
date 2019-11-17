@@ -38,11 +38,13 @@ class Hashtable:
     _lenght: int
     _width: int
     _hash_funcion: HashFunction = polynomialRollingHashFunction
+    _len: int
 
     def __init__(self, lenght=100, width=10):
         self._records = [[None for __ in range(width)] for __ in range(lenght)]
         self._lenght = lenght
         self._width = width
+        self._len = 0
 
     def add(self, string):
         hash = self._hash_funcion(string)
@@ -56,6 +58,7 @@ class Hashtable:
             raise HashtableFullError() from exc
 
         self._records[index_x][index_y] = new_hash_record
+        self._len += 1
 
     def indexes(self, string):
         hash = self._hash_funcion(string)
@@ -76,6 +79,7 @@ class Hashtable:
         except HashtableEmptyError:
             return
         self._records[index_x][index_y] = None
+        self._len -= 1
 
     def __contains__(self, string):
         try:
