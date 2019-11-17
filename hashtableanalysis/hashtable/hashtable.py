@@ -1,7 +1,8 @@
 from collections import namedtuple
-from typing import List, Callable
+from typing import Callable, List
 
-from hashtableanalysis.hashtable.hashfunctions import HashFunction, polynomialRollingHashFunction
+from hashtableanalysis.hashtable.hashfunctions import (
+    HashFunction, polynomialRollingHashFunction)
 
 
 class HashtableRecord:
@@ -32,15 +33,15 @@ class Hashtable:
         self._lenght = lenght
         self._width = width
 
-    def add(self, word):
-        hash = self._hash_funcion(word)
-        new_hash_record = HashtableRecord(hash, word)
+    def add(self, string):
+        hash = self._hash_funcion(string)
+        new_hash_record = HashtableRecord(hash, string)
 
         index_x = hash % self._lenght
 
         try:
-            index_of_first_free_record = self._records[index_x].index(None)
-            self._records[index_x][index_of_first_free_record] = new_hash_record
+            index_y_of_first_free_record = self._records[index_x].index(None)
+            self._records[index_x][index_y_of_first_free_record] = new_hash_record
         except ValueError as exc:
             raise HashtableFullError() from exc
 
