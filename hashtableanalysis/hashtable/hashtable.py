@@ -1,4 +1,5 @@
 from collections import namedtuple
+from collections import abc
 from typing import Callable, List
 
 from hashtableanalysis.hashtable.hashfunctions import (
@@ -33,7 +34,7 @@ class HashtableEmptyError(Exception):
     pass
 
 
-class Hashtable:
+class Hashtable(abc.Set):
     _records: List[List[HashtableRecord]]
     _lenght: int
     _width: int
@@ -91,5 +92,11 @@ class Hashtable:
     def __len__(self):
         return self._len
 
+    def __iter__(self):
+        raise NotImplementedError('Need to be implemented')
+
     def __repr__(self):
         return repr(self._records)
+
+if __name__ == "__main__":
+    Hashtable()
