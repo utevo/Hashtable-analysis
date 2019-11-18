@@ -34,6 +34,41 @@ class HashtableEmptyError(Exception):
     pass
 
 
+class HashtableIterator(abc.Iterator):
+    _hashtable: object
+    _index_x: int
+    _index_y: int
+
+    def __init__(self, hashtable):
+        self._hashtable = hashtable
+        self._index_x = 0
+        self._index_y = 0
+
+    def __iter__(self):
+        return self
+
+    def _next(self):
+        hashtable_max_index_x = self._hashtable._lenght - 1
+        if self._index_x > hashtable_max_index_x:
+            raise StopIteration()
+
+        result = self._hashtable._records[self._index_x][self._index_y]
+
+        self._index_y += 1
+        hashtable_max_index_y = self._hashtable._width - 1
+        if self._index_y > hashtable_max_index_y:
+            self._index_y = 0
+            self._index_x += 1
+
+        return result
+
+    def __next__(self):
+        next = self._next()
+        while next is None:
+            next = self._next()
+        return next
+        
+
 class Hashtable(abc.Set):
     _records: List[List[HashtableRecord]]
     _lenght: int
@@ -93,10 +128,7 @@ class Hashtable(abc.Set):
         return self._len
 
     def __iter__(self):
-        raise NotImplementedError('Need to be implemented')
+        return HashtableIterator(self)
 
     def __repr__(self):
         return repr(self._records)
-
-if __name__ == "__main__":
-    Hashtable()
