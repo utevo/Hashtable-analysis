@@ -26,11 +26,11 @@ class HashtableRecord:
         return f"HashtableRecord(hash='{self.hash}', value='{self.value}')"
 
 
-class HashtableFullError(Exception):
+class HashtableRowFullError(Exception):
     pass
 
 
-class HashtableEmptyError(Exception):
+class HashtableRowEmptyError(Exception):
     pass
 
 
@@ -92,7 +92,7 @@ class Hashtable(abc.Set):
             column_of_first_free_record = self._records[row].index(None)
             column = column_of_first_free_record
         except ValueError as exc:
-            raise HashtableFullError() from exc
+            raise HashtableRowFullError() from exc
 
         self._records[row][column] = new_hash_record
         self._len += 1
@@ -106,14 +106,14 @@ class Hashtable(abc.Set):
             column_of_searched_hash_record = self._records[row].index(searched_hash_record)
             column = column_of_searched_hash_record
         except ValueError as exc:
-            raise HashtableEmptyError() from exc
+            raise HashtableRowEmptyError() from exc
 
         return row, column
 
     def discard(self, string):
         try:
             row, column = self.indexes(string)
-        except HashtableEmptyError:
+        except HashtableRowEmptyError:
             return
         self._records[row][column] = None
         self._len -= 1
@@ -121,7 +121,7 @@ class Hashtable(abc.Set):
     def __contains__(self, string):
         try:
             self.indexes(string)
-        except HashtableEmptyError:
+        except HashtableRowEmptyError:
             return False
         return True
 
