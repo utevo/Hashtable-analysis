@@ -75,7 +75,7 @@ class HashtableIterator(abc.Iterator):
 
 
 class Hashtable(abc.Set):
-    _cells: List[List[Union(HashtableRecord, None)]]
+    _cells: List[List[Union[HashtableRecord, None]]]
     _number_of_rows: int
     _number_of_columns: int
     _hash_funcion: HashFunction = polynomialRollingHashFunction
