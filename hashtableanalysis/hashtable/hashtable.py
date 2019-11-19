@@ -36,29 +36,30 @@ class HashtableEmptyError(Exception):
 
 class HashtableIterator(abc.Iterator):
     _hashtable: object
-    _index_x: int
-    _index_y: int
+    _row: int
+    _column: int
 
     def __init__(self, hashtable):
         self._hashtable = hashtable
-        self._index_x = 0
-        self._index_y = 0
+        self._row = 0
+        self._column = 0
 
     def __iter__(self):
         return self
 
     def _next(self):
-        hashtable_max_index_x = self._hashtable._lenght - 1
-        if self._index_x > hashtable_max_index_x:
+        max_hashtable_row = self._hashtable._number_of_rows - 1
+        if self._row > max_hashtable_row:
             raise StopIteration()
 
-        result = self._hashtable._records[self._index_x][self._index_y]
+        records = self._hashtable._records
+        result = records[self._row][self._column]
 
-        self._index_y += 1
-        hashtable_max_index_y = self._hashtable._width - 1
-        if self._index_y > hashtable_max_index_y:
-            self._index_y = 0
-            self._index_x += 1
+        self._column += 1
+        max_hashtable_column = self._hashtable._number_of_columns - 1
+        if self._column > max_hashtable_column:
+            self._column = 0
+            self._row += 1
 
         return result
 
@@ -71,50 +72,50 @@ class HashtableIterator(abc.Iterator):
 
 class Hashtable(abc.Set):
     _records: List[List[HashtableRecord]]
-    _lenght: int
-    _width: int
+    _number_of_rows: int
+    _number_of_columns: int
     _hash_funcion: HashFunction = polynomialRollingHashFunction
     _len: int
 
-    def __init__(self, lenght=100, width=10):
-        self._records = [[None for __ in range(width)] for __ in range(lenght)]
-        self._lenght = lenght
-        self._width = width
+    def __init__(self, rows=100, columns=10):
+        self._records = [[None for __ in range(rows)] for __ in range(rows)]
+        self._number_of_rows = rows
+        self._number_of_columns = columns
         self._len = 0
 
     def add(self, string):
         hash = self._hash_funcion(string)
         new_hash_record = HashtableRecord(hash, string)
-        index_x = hash % self._lenght
+        row = hash % self._number_of_rows
 
         try:
-            index_y_of_first_free_record = self._records[index_x].index(None)
-            index_y = index_y_of_first_free_record
+            column_of_first_free_record = self._records[row].index(None)
+            column = column_of_first_free_record
         except ValueError as exc:
             raise HashtableFullError() from exc
 
-        self._records[index_x][index_y] = new_hash_record
+        self._records[row][column] = new_hash_record
         self._len += 1
 
     def indexes(self, string):
         hash = self._hash_funcion(string)
         searched_hash_record = HashtableRecord(hash, string)
-        index_x = hash % self._lenght
+        row = hash % self._number_of_rows
 
         try:
-            index_y_of_searched_hash_record = self._records[index_x].index(searched_hash_record)
-            index_y = index_y_of_searched_hash_record
+            column_of_searched_hash_record = self._records[row].index(searched_hash_record)
+            column = column_of_searched_hash_record
         except ValueError as exc:
             raise HashtableEmptyError() from exc
 
-        return index_x, index_y
+        return row, column
 
     def discard(self, string):
         try:
-            index_x, index_y = self.indexes(string)
+            row, column = self.indexes(string)
         except HashtableEmptyError:
             return
-        self._records[index_x][index_y] = None
+        self._records[row][column] = None
         self._len -= 1
 
     def __contains__(self, string):
