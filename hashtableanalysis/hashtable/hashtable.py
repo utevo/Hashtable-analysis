@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from collections import namedtuple
 from collections import abc
-from typing import Callable, List, Union
+from typing import Callable, List, Union, Tuple
 
 from hashtableanalysis.hashtable.hashfunctions import (
     HashFunction, polynomialRollingHashFunction)
@@ -14,7 +16,7 @@ class HashtableRecord:
         self.hash = hash
         self.value = value
 
-    def __eq__(self, other):
+    def __eq__(self, other: HashtableRecord) -> bool:
         if not isinstance(other, HashtableRecord):
             return False
 
@@ -22,7 +24,7 @@ class HashtableRecord:
         is_value_eq = self.value == other.value
         return is_hash_eq and is_value_eq
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"HashtableRecord(hash='{self.hash}', value='{self.value}')"
 
 
@@ -44,10 +46,10 @@ class HashtableIterator(abc.Iterator):
         self._row = 0
         self._column = 0
 
-    def __iter__(self):
+    def __iter__(self) -> HashtableIterator:
         return self
 
-    def _next_cell(self):
+    def _next_cell(self) -> Union[HashtableRecord, None]:
         max_hashtable_row = self._hashtable._number_of_rows - 1
         if self._row > max_hashtable_row:
             raise StopIteration()
@@ -63,13 +65,13 @@ class HashtableIterator(abc.Iterator):
 
         return result
 
-    def _next_record(self):
+    def _next_record(self) -> HashtableRecord:
         next = self._next_cell()
         while next is None:
             next = self._next_cell()
         return next
 
-    def __next__(self):
+    def __next__(self) -> str:
         record = self._next_record()
         return record.value
 
@@ -87,7 +89,7 @@ class Hashtable(abc.Set):
         self._number_of_columns = columns
         self._len = 0
 
-    def add(self, string):
+    def add(self, string: str) -> None:
         hash = self._hash_funcion(string)
         new_hash_record = HashtableRecord(hash, string)
         row = hash % self._number_of_rows
@@ -101,7 +103,7 @@ class Hashtable(abc.Set):
         self._cells[row][column] = new_hash_record
         self._len += 1
 
-    def _indexes(self, string):
+    def _indexes(self, string: str) -> Tuple[int, int]:
         hash = self._hash_funcion(string)
         searched_hash_record = HashtableRecord(hash, string)
         row = hash % self._number_of_rows
@@ -114,7 +116,7 @@ class Hashtable(abc.Set):
 
         return row, column
 
-    def discard(self, string):
+    def discard(self, string: str) -> None:
         try:
             row, column = self._indexes(string)
         except HashtableRowEmptyError:
@@ -122,18 +124,18 @@ class Hashtable(abc.Set):
         self._cells[row][column] = None
         self._len -= 1
 
-    def __contains__(self, string):
+    def __contains__(self, string: str) -> bool:
         try:
             self._indexes(string)
         except HashtableRowEmptyError:
             return False
         return True
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self._len
 
-    def __iter__(self):
+    def __iter__(self) -> HashtableIterator:
         return HashtableIterator(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self._cells)
