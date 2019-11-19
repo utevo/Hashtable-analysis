@@ -55,3 +55,24 @@ def test_hashtableiterator_init():
 
     iterator = iter(hashtable)
     assert iterator == iter(iterator)
+
+
+def test_hashtableiterator_next():
+    hashtable = Hashtable()
+    string_1 = 'Ambroży'
+    string_2 = 'Kleks'
+    string_3 = 'Mucholot'
+    hashtable.add(string_1)
+    hashtable.add(string_2)
+    hashtable.add(string_3)
+
+    iterator = iter(hashtable)
+    strings = set()
+    try:
+        while True:
+            string = next(iterator)
+            strings.add(string)
+    except StopIteration:
+        pass
+
+    assert strings == {string_1, string_2, string_3}
