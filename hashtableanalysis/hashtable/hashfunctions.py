@@ -15,10 +15,8 @@ class PolynomialRollingHashFunction(HashFunction):
         multiplier = 1
 
         for char in string:
-            result += ord(char) * multiplier
-
-            result %= self.M
-            multiplier *= self.P
+            result = (result  + ord(char) * multiplier) % self.M
+            multiplier = (multiplier * self.P) % self.M
         
         return result
 
