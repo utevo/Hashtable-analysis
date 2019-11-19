@@ -48,3 +48,10 @@ def test_hashtable_len():
     assert len(hashtable) == 0
     hashtable.discard(string_2)
     assert len(hashtable) == 0
+
+
+def test_hashtableiterator_init():
+    hashtable = Hashtable()
+
+    iterator = iter(hashtable)
+    assert iterator == iter(iterator)
