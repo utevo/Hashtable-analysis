@@ -97,7 +97,7 @@ class Hashtable(abc.Set):
         self._records[row][column] = new_hash_record
         self._len += 1
 
-    def indexes(self, string):
+    def _indexes(self, string):
         hash = self._hash_funcion(string)
         searched_hash_record = HashtableRecord(hash, string)
         row = hash % self._number_of_rows
@@ -112,7 +112,7 @@ class Hashtable(abc.Set):
 
     def discard(self, string):
         try:
-            row, column = self.indexes(string)
+            row, column = self._indexes(string)
         except HashtableRowEmptyError:
             return
         self._records[row][column] = None
@@ -120,7 +120,7 @@ class Hashtable(abc.Set):
 
     def __contains__(self, string):
         try:
-            self.indexes(string)
+            self._indexes(string)
         except HashtableRowEmptyError:
             return False
         return True
