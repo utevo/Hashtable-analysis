@@ -1,6 +1,6 @@
 from collections import namedtuple
 from collections import abc
-from typing import Callable, List
+from typing import Callable, List, Union
 
 from hashtableanalysis.hashtable.hashfunctions import (
     HashFunction, polynomialRollingHashFunction)
@@ -52,8 +52,8 @@ class HashtableIterator(abc.Iterator):
         if self._row > max_hashtable_row:
             raise StopIteration()
 
-        records = self._hashtable._records
-        result = records[self._row][self._column]
+        cells = self._hashtable._cells
+        result = cells[self._row][self._column]
 
         self._column += 1
         max_hashtable_column = self._hashtable._number_of_columns - 1
@@ -71,14 +71,14 @@ class HashtableIterator(abc.Iterator):
         
 
 class Hashtable(abc.Set):
-    _records: List[List[HashtableRecord]]
+    _cells: List[List[Union(HashtableRecord, None)]]
     _number_of_rows: int
     _number_of_columns: int
     _hash_funcion: HashFunction = polynomialRollingHashFunction
     _len: int
 
     def __init__(self, rows=100, columns=10):
-        self._records = [[None for __ in range(rows)] for __ in range(rows)]
+        self._cells = [[None for __ in range(rows)] for __ in range(rows)]
         self._number_of_rows = rows
         self._number_of_columns = columns
         self._len = 0
@@ -89,12 +89,12 @@ class Hashtable(abc.Set):
         row = hash % self._number_of_rows
 
         try:
-            column_of_first_free_record = self._records[row].index(None)
+            column_of_first_free_record = self._cells[row].index(None)
             column = column_of_first_free_record
         except ValueError as exc:
             raise HashtableRowFullError() from exc
 
-        self._records[row][column] = new_hash_record
+        self._cells[row][column] = new_hash_record
         self._len += 1
 
     def _indexes(self, string):
@@ -103,7 +103,7 @@ class Hashtable(abc.Set):
         row = hash % self._number_of_rows
 
         try:
-            column_of_searched_hash_record = self._records[row].index(searched_hash_record)
+            column_of_searched_hash_record = self._cells[row].index(searched_hash_record)
             column = column_of_searched_hash_record
         except ValueError as exc:
             raise HashtableRowEmptyError() from exc
@@ -115,7 +115,7 @@ class Hashtable(abc.Set):
             row, column = self._indexes(string)
         except HashtableRowEmptyError:
             return
-        self._records[row][column] = None
+        self._cells[row][column] = None
         self._len -= 1
 
     def __contains__(self, string):
@@ -132,4 +132,4 @@ class Hashtable(abc.Set):
         return HashtableIterator(self)
 
     def __repr__(self):
-        return repr(self._records)
+        return repr(self._cells)
