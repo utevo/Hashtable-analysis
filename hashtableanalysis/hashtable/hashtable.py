@@ -70,7 +70,8 @@ class HashtableIterator(abc.Iterator):
         return next
 
     def __next__(self):
-        return self._next_record()
+        record = self._next_record()
+        return record.value
 
 
 class Hashtable(abc.Set):
