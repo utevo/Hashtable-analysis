@@ -5,7 +5,7 @@ from hashtableanalysis.hashtable.hashtable import Hashtable
 
 def test_hashtable_add():
     hashtable = Hashtable()
-    string = 'AbCdEfG'
+    string = 'Ambroży'
 
     assert string not in hashtable 
     hashtable.add(string)
@@ -14,7 +14,7 @@ def test_hashtable_add():
 
 def test_hashtable_discard():
     hashtable = Hashtable()
-    string = 'AbCdEfG'
+    string = 'Ambroży'
 
     assert string not in hashtable 
     hashtable.discard(string)
