@@ -47,7 +47,7 @@ class HashtableIterator(abc.Iterator):
     def __iter__(self):
         return self
 
-    def _next(self):
+    def _next_cell(self):
         max_hashtable_row = self._hashtable._number_of_rows - 1
         if self._row > max_hashtable_row:
             raise StopIteration()
@@ -63,12 +63,15 @@ class HashtableIterator(abc.Iterator):
 
         return result
 
-    def __next__(self):
-        next = self._next()
+    def _next_record(self):
+        next = self._next_cell()
         while next is None:
-            next = self._next()
+            next = self._next_cell()
         return next
-        
+
+    def __next__(self):
+        return self._next_record()
+
 
 class Hashtable(abc.Set):
     _cells: List[List[Union(HashtableRecord, None)]]
