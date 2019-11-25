@@ -4,24 +4,32 @@ from . import __version__
 
 
 @click.group()
+@click.version_option(version=__version__)
 def cli():
     pass
 
 
 @click.command()
-@click.version_option(version=__version__)
-def io(input, n):
+@click.argument('input', type=click.File('r'))
+@click.argument('output', type=click.File('w'))
+def io(input, output):
+    """Pobiera słowa z INPUT. Potem dodaje je wszystkie do tablicy
+    mieszającej. Następnie na OUTPUT zostaje wygenerowany wewnętrzny
+    stan tablicy mieszającej. Po wszystkim tablica zostaje wyczyszczona.
+
+    \b
+    Pobiera słowa z pliku foo.txt i zwraca wynik programu do pliku bar.txt:
+        hashtable io foo.txt bar.txt
+    """
     pass
 
 
 @click.command()
-@click.version_option(version=__version__)
 def generate(input, n):
     pass
 
 
 @click.command()
-@click.version_option(version=__version__)
 def benchmark(input, n):
     pass
 
