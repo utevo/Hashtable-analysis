@@ -24,7 +24,10 @@ def cli(input, output):
     """
     dirty_text = input.read()
     words = cleartext(dirty_text)
-    output.write(str(words))
+    words_splited_by_new_line = '\n'.join(words)
+
+    output.write(words_splited_by_new_line)
+    output.write('\n')
 
 
 if __name__ == '__main__':
