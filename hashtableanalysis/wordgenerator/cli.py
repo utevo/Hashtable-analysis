@@ -13,15 +13,16 @@ from . import __version__
 @click.argument('output', type=click.File('w'))
 @click.argument('number_of_words', type=click.INT)
 def cli(input, output, number_of_words):
-    """
+    """Generuje NUMBER_OF_WORDS słów na podstawie INPUT do OUTPUT
+
     \b
-    Geberate 10 words based on the stdin to stdout:
+    Generuje 10 słów na podstawie stdin do stdout:
         wordgenerator - - 10
     \b
-    Geberate 30 words based on the file foo.txt to stdout:
+    Generuje 30 słów na podstawie pliku foo.txt do stdout:
         wordgenerator foo.txt - 30
     \b
-    Geberate 50 words based on the file stdin into the file bar.txt
+    Generuje 50 słów na podstawie stdio do pliku bar.txt:
         wordgenerator - bar.txt 50
     """
     text = input.read()
