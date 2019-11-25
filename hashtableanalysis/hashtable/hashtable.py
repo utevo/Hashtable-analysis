@@ -36,7 +36,7 @@ class HashtableRowEmptyError(Exception):
     pass
 
 
-class HashtableIterator(abc.Iterator):
+class HashatbleLowLevelIterator(abc.Iterator):
     _hashtable: object
     _row: int
     _column: int
@@ -63,16 +63,29 @@ class HashtableIterator(abc.Iterator):
             self._column = 0
             self._row += 1
 
-        return result
+        return result, self._row, self._column
 
     def _next_record(self) -> HashtableRecord:
-        next = self._next_cell()
-        while next is None:
-            next = self._next_cell()
-        return next
+        record, row, column = self._next_cell()
+        while record is None:
+            record, row, column = self._next_cell()
+        return record, row, column
 
     def __next__(self) -> str:
-        record = self._next_record()
+        return self._next_record()
+
+
+class HashtableIterator(abc.Iterator):
+    _low_level_iterator: HashatbleLowLevelIterator
+
+    def __init__(self, hashtable):
+        self._low_level_iterator = HashatbleLowLevelIterator(hashtable)
+
+    def __iter__(self) -> HashtableIterator:
+        return self
+
+    def __next__(self):
+        record, row, column = next(self._low_level_iterator)
         return record.value
 
 
