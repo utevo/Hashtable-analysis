@@ -39,6 +39,7 @@ def cli(input, output, number_of_words):
         generated_words.append(generated_word)
 
     output.writelines('\n'.join(generated_words))
+    output.write('\n')
 
 
 if __name__ == '__main__':
