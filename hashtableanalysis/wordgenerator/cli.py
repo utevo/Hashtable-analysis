@@ -31,10 +31,13 @@ def cli(input, output, number_of_words):
         raise ValueError("In input there aren't any words.")
 
     word_generator = wordgenerator(words)
+    generated_words = []
 
     for __ in range(number_of_words):
-        word = next(word_generator)
-        output.write(word + '\n')
+        generated_word = next(word_generator)
+        generated_words.append(generated_word)
+
+    output.writelines('\n'.join(generated_words))
 
 
 if __name__ == '__main__':
