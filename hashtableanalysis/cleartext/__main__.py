@@ -1,5 +1,5 @@
 import click
 
 if __name__ == '__main__':
-    from .cli import main
-    main()
+    from .cli import cli
+    cli()
