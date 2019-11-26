@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from collections import namedtuple
 from collections import abc
 from typing import Callable, List, Union, Tuple
+
+import pandas as pd
 
 from hashtableanalysis.hashtable.hashfunctions import (
     HashFunction, polynomialRollingHashFunction)
@@ -152,3 +153,25 @@ class Hashtable(abc.Set):
 
     def __repr__(self) -> str:
         return repr(self._cells)
+
+
+class HashtableViewer:
+    _hashtable: Hashtable
+
+    def __init__(self, hashtable):
+        self._hashtable = hashtable
+    
+    def low_level(self) -> pd.DataFrame:
+        values = []
+        rows = []
+        columns = []
+        hashes = []
+        for record, row, column in HashatbleLowLevelIterator(self._hashtable):
+            values.append(record.value)
+            rows.append(row)
+            columns.append(column)
+            hashes.append(record.hash)
+        
+        data = {'value': values, 'row': rows, 'column': columns, 'hash': hashes}
+        df = pd.DataFrame(data)
+        return df
