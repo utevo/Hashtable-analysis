@@ -1,5 +1,7 @@
 import click
 
+from hashtableanalysis.hashtable.hashtable import (
+    Hashtable, HashtableViewer)
 from . import __version__
 
 
@@ -15,7 +17,7 @@ def cli():
 def io(input, output):
     """Pobiera słowa z INPUT. Potem dodaje je wszystkie do tablicy
     mieszającej. Następnie na OUTPUT zostaje wygenerowany wewnętrzny
-    stan tablicy mieszającej. Po wszystkim tablica zostaje wyczyszczona.
+    stan tablicy mieszającej.
 
     \b
     Pobiera słowa z pliku foo.txt i zwraca wynik programu do pliku bar.txt:
