@@ -8,6 +8,7 @@ authors = ["Kowies <kowieski.m98@gmail.com>"]
 python = "^3.7"
 click = "^7.0"
 sphinx = "^2.2"
+pandas = "^0.25.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
