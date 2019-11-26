@@ -61,7 +61,14 @@ def generate(input, output, number_of_words):
 
 
 @click.command()
-def benchmark(input, n):
+@click.argument('input', type=click.File('r'))
+@click.argument('output', type=click.File('w'))
+@click.argument('initial_number_of_words', type=click.INT)
+@click.argument('step', type=click.INT)
+@click.argument('number_of_problems', type=click.INT)
+@click.argument('number_of_instances', type=click.INT)
+def benchmark(input, output, initial_number_of_words, step,
+              number_of_problems, number_of_instances):
     pass
 
 
