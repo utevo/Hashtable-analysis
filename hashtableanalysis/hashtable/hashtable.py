@@ -57,6 +57,8 @@ class HashatbleLowLevelIterator(abc.Iterator):
 
         cells = self._hashtable._cells
         result = cells[self._row][self._column]
+        row = self._row
+        column = self._column
 
         self._column += 1
         max_hashtable_column = self._hashtable._number_of_columns - 1
@@ -64,7 +66,7 @@ class HashatbleLowLevelIterator(abc.Iterator):
             self._column = 0
             self._row += 1
 
-        return result, self._row, self._column
+        return result, row, column
 
     def _next_record(self) -> Union[Tuple[HashtableRecord, int, int], None]:
         record, row, column = self._next_cell()
