@@ -69,6 +69,17 @@ def generate(input, output, number_of_words):
 @click.argument('number_of_instances', type=click.INT)
 def benchmark(input, output, initial_number_of_words, step,
               number_of_problems, number_of_instances):
+    """Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości 
+    NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
+
+    Args:
+        input (file): Plik na podstawie którego będą generowane dane.
+        output (file): Plik do którego zostanie przekazany wynik.
+        initial_number_of_words (int): Początkowa wartość NUMBER_OF_WORDS.
+        step (int): Krok o ile będzie zwiększana wartość NUMBER_OF_WORDS.
+        number_of_problems (int): Ilość rozwiązywanych problemów.
+        number_of_insances (int): Ilość instancji problemu.
+    """
     pass
 
 
