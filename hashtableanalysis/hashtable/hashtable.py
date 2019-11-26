@@ -49,7 +49,7 @@ class HashatbleLowLevelIterator(abc.Iterator):
     def __iter__(self) -> HashtableIterator:
         return self
 
-    def _next_cell(self) -> Union[HashtableRecord, None]:
+    def _next_cell(self) -> Union[Tuple[HashtableRecord, int, int], None]:
         max_hashtable_row = self._hashtable._number_of_rows - 1
         if self._row > max_hashtable_row:
             raise StopIteration()
@@ -65,13 +65,13 @@ class HashatbleLowLevelIterator(abc.Iterator):
 
         return result, self._row, self._column
 
-    def _next_record(self) -> HashtableRecord:
+    def _next_record(self) -> Union[Tuple[HashtableRecord, int, int], None]:
         record, row, column = self._next_cell()
         while record is None:
             record, row, column = self._next_cell()
         return record, row, column
 
-    def __next__(self) -> str:
+    def __next__(self) -> Union[Tuple[HashtableRecord, int, int], None]:
         return self._next_record()
 
 
