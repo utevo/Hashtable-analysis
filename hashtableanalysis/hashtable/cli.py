@@ -34,7 +34,7 @@ def io(input, output):
 
     viewer = HashtableViewer(hashtable)
     df = viewer.low_level()
-    print(df, file=output)
+    print(df.to_string(), file=output)
 
 
 @click.command()
@@ -57,7 +57,7 @@ def generate(input, output, number_of_words):
 
     viewer = HashtableViewer(hashtable)
     df = viewer.low_level()
-    print(df, file=output)
+    print(df.to_string(), file=output)
 
 
 @click.command()
