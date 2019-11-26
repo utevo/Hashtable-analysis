@@ -2,6 +2,8 @@ import click
 
 from hashtableanalysis.hashtable.hashtable import (
     Hashtable, HashtableViewer)
+from hashtableanalysis.cleartext.cleartext import cleartext
+from hashtableanalysis.wordgenerator.wordgenerator import wordgenerator
 from . import __version__
 
 
@@ -44,7 +46,18 @@ def generate(input, output, number_of_words):
     wszystkie do tablicy mieszającej. Następnie na OUTPUT zostaje 
     wygenerowany wewnętrzny stan tablicy mieszającej.
     """
-    pass
+    text = input.read()
+    words = cleartext(text)
+    word_generator = wordgenerator(words)
+    hashtable = Hashtable()
+
+    for __ in range(number_of_words):
+        new_word = next(word_generator)
+        hashtable.add(new_word)
+
+    viewer = HashtableViewer(hashtable)
+    df = viewer.low_level()
+    print(df, file=output)
 
 
 @click.command()
