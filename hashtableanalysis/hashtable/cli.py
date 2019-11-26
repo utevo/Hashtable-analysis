@@ -23,7 +23,16 @@ def io(input, output):
     Pobiera słowa z pliku foo.txt i zwraca wynik programu do pliku bar.txt:
         hashtable io foo.txt bar.txt
     """
-    pass
+    text = input.read()
+    words = text.split('\n')
+    hashtable = Hashtable()
+
+    for word in words:
+        hashtable.add(word)
+
+    viewer = HashtableViewer(hashtable)
+    df = viewer.low_level()
+    print(df, file=output)
 
 
 @click.command()
