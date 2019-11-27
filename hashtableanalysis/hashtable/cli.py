@@ -92,50 +92,45 @@ def benchmark(input, output, initial_number_of_words, step,
     text = input.read()
     words = cleartext(text)
     word_generator = wordgenerator(words)
-    
-    number_of_words = initial_number_of_words
-    mean_exec_time_for_problems = []
-    for __ in range(number_of_problems):
 
-        exec_times_for_problem = []
+    n_values = []
+    number_of_words = initial_number_of_words
+    for __ in range(number_of_problems):
+        n_values.append(number_of_words)
+        number_of_words += step
+    
+    t_values = []
+    for number_of_words in n_values:
+
+        t_instances_values = []
         for __ in range(number_of_instances):
-            hashtable = Hashtable(10000)
+            hashtable = Hashtable(10000, 50)
 
             start_time = time.time()
             add_n_elemnts_from_word_generator_to_hashtable(number_of_words,
                                                            word_generator, hashtable)
             end_time = time.time()
 
-            exec_time_for_instance = end_time - start_time
-            exec_times_for_problem.append(exec_time_for_instance)
+            t_instance_value = end_time - start_time
+            t_instances_values.append(t_instance_value)
             
-        mean_exec_time_for_problem = statistics.mean(exec_times_for_problem)
-        mean_exec_time_for_problems.append(mean_exec_time_for_problem)
-        number_of_words += step
-    
-    n_values = []
-    number_of_words = initial_number_of_words
-    for __ in range(number_of_problems):
-        n_values.append(number_of_words)
-        number_of_words += step
+        mean_of_t_instances_values = statistics.mean(t_instances_values)
+        t_values.append(mean_of_t_instances_values)
 
+    
     # t_t(n) = O(n)
     median_index = number_of_problems // 2
     median_of_n_values = n_values[median_index]
-    mean_exec_time_for_median = mean_exec_time_for_problems[median_index]
+    t_value_for_median_index = t_values[median_index]
     # 1 = mean_exec_time_for_median / C * median_of_n_valus
     #       ||
     #       \/
     # C = mean_exec_time_for_median / median_of_n_valus
-    C = mean_exec_time_for_median / median_of_n_values
-
-
-    t_values = mean_exec_time_for_problems
+    C = t_value_for_median_index / median_of_n_values
 
     q_values = [None] * number_of_problems
     for index in range(number_of_problems):
         q_values[index] = t_values[index] / (C * n_values[index])
-
 
     print('n_values', n_values)
     print('t_values', t_values)
