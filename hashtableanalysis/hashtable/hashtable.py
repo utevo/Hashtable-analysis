@@ -100,7 +100,7 @@ class Hashtable(abc.Set):
     _len: int
 
     def __init__(self, rows=100, columns=10):
-        self._cells = [[None for __ in range(rows)] for __ in range(rows)]
+        self._cells = [[None for __ in range(columns)] for __ in range(rows)]
         self._number_of_rows = rows
         self._number_of_columns = columns
         self._len = 0
