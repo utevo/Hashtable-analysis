@@ -118,15 +118,14 @@ def benchmark(input, output, initial_number_of_words, step,
         t_values.append(mean_of_t_instances_values)
 
     
-    # t_t(n) = O(n)
+    # t(n) = O(n) =>  T(n) = n
+    # 1 = t_value_for_median_index / C * theoretical_number_of_operation_for_median_index => 
+    # => C = t_value_for_median_index / theoretical_number_of_operation_for_median_index
     median_index = number_of_problems // 2
-    median_of_n_values = n_values[median_index]
+    n_values_for_median_index = n_values[median_index]
+    theoretical_number_of_operation_for_median_index = n_values_for_median_index
     t_value_for_median_index = t_values[median_index]
-    # 1 = mean_exec_time_for_median / C * median_of_n_valus
-    #       ||
-    #       \/
-    # C = mean_exec_time_for_median / median_of_n_valus
-    C = t_value_for_median_index / median_of_n_values
+    C = t_value_for_median_index / theoretical_number_of_operation_for_median_index
 
     q_values = [None] * number_of_problems
     for index in range(number_of_problems):
