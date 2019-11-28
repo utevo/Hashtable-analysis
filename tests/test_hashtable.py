@@ -77,6 +77,7 @@ def test_hashtableiterator_next():
 
     assert strings == {string_1, string_2, string_3}
 
+
 def test_hashtableiterator_iteratrion_by_for_loop():
     hashtable = Hashtable()
     string_1 = 'Ambroży'
@@ -91,3 +92,20 @@ def test_hashtableiterator_iteratrion_by_for_loop():
         strings.add(string)
 
     assert strings == {string_1, string_2, string_3}
+
+
+def test_hashtable_clear():
+    hashtable = Hashtable()
+    string_1 = 'Ambroży'
+    string_2 = 'Kleks'
+    string_3 = 'Mucholot'
+    hashtable.add(string_1)
+    hashtable.add(string_2)
+    hashtable.add(string_3)
+
+    hashtable.clear()
+    strings = set()
+    for string in hashtable:
+        strings.add(string)
+
+    assert strings == set()
