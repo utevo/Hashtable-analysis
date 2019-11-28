@@ -80,7 +80,8 @@ def generate(hashtable, input, output, number_of_words):
 @click.argument('step', type=click.INT)
 @click.argument('number_of_problems', type=click.INT)
 @click.argument('number_of_instances', type=click.INT)
-def benchmark(input, output, initial_number_of_words, step,
+@click.pass_obj
+def benchmark(hashtable, input, output, initial_number_of_words, step,
               number_of_problems, number_of_instances):
     """Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości 
     NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
@@ -108,7 +109,7 @@ def benchmark(input, output, initial_number_of_words, step,
 
         t_values_of_instances = []
         for __ in range(number_of_instances):
-            hashtable = Hashtable(10000, 50)
+            hashtable.clear()
 
             start_time = time.time()
             add_n_elemnts_from_word_generator_to_hashtable(number_of_words,
@@ -134,11 +135,7 @@ def benchmark(input, output, initial_number_of_words, step,
     for index in range(number_of_problems):
         q_values[index] = t_values[index] / (C * n_values[index])
 
-    data = {
-        'n': n_values, 
-        't(n)': t_values,
-        'q(n)': q_values,
-        }
+    data = {'n': n_values, 't(n)': t_values, 'q(n)': q_values}
     df = pd.DataFrame(data)
     print(df.to_string(), file=output)
 
