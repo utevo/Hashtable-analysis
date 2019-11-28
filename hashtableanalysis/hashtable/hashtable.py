@@ -146,7 +146,6 @@ class Hashtable(abc.Set):
         rows = self._number_of_rows
         self._cells = [[None for __ in range(columns)] for __ in range(rows)]
 
-
     def __contains__(self, string: str) -> bool:
         try:
             self._indexes(string)
