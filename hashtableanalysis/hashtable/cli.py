@@ -55,7 +55,8 @@ def io(hashtable, input, output):
 @click.argument('input', type=click.File('r'))
 @click.argument('output', type=click.File('w'))
 @click.argument('number_of_words', type=click.INT)
-def generate(input, output, number_of_words):
+@click.pass_obj
+def generate(hashtable, input, output, number_of_words):
     """Generuje NUMBER_OF_WORDS słow na podstawie INPUT. Potem dodaje je
     wszystkie do tablicy mieszającej. Następnie na OUTPUT zostaje 
     wygenerowany wewnętrzny stan tablicy mieszającej.
@@ -63,7 +64,6 @@ def generate(input, output, number_of_words):
     text = input.read()
     words = cleartext(text)
     word_generator = wordgenerator(words)
-    hashtable = Hashtable()
 
     add_n_elemnts_from_word_generator_to_hashtable(number_of_words,
                                                    word_generator, hashtable)
