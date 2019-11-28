@@ -2,6 +2,7 @@ import time
 import statistics
 
 import click
+import pandas as pd
 
 from hashtableanalysis.hashtable.hashtable import (
     Hashtable, HashtableViewer)
@@ -131,9 +132,15 @@ def benchmark(input, output, initial_number_of_words, step,
     for index in range(number_of_problems):
         q_values[index] = t_values[index] / (C * n_values[index])
 
-    print('n_values', n_values)
-    print('t_values', t_values)
-    print('q_values', q_values)
+
+    data = {
+        'n': n_values, 
+        't(n)': t_values,
+        'q(n)': q_values,
+        }
+    df = pd.DataFrame(data)
+    print(df.to_string(), file=output)
+
 
     
 cli.add_command(io)
