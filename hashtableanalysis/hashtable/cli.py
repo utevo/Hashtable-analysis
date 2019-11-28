@@ -118,7 +118,6 @@ def benchmark(input, output, initial_number_of_words, step,
         mean_of_t_values_of_instances = statistics.mean(t_values_of_instances)
         t_values.append(mean_of_t_values_of_instances)
 
-    
     # t(n) = O(n) =>  T(n) = n
     # 1 = t_value_for_median_index / C * theoretical_number_of_operation_for_median_index => 
     # => C = t_value_for_median_index / theoretical_number_of_operation_for_median_index
@@ -132,7 +131,6 @@ def benchmark(input, output, initial_number_of_words, step,
     for index in range(number_of_problems):
         q_values[index] = t_values[index] / (C * n_values[index])
 
-
     data = {
         'n': n_values, 
         't(n)': t_values,
@@ -142,7 +140,6 @@ def benchmark(input, output, initial_number_of_words, step,
     print(df.to_string(), file=output)
 
 
-    
 cli.add_command(io)
 cli.add_command(generate)
 cli.add_command(benchmark)
