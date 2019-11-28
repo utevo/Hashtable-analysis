@@ -109,3 +109,20 @@ def test_hashtable_clear():
         strings.add(string)
 
     assert strings == set()
+
+
+def test_hashtable_clear_vol_2():
+    hashtable = Hashtable()
+    string_1 = 'Ambroży'
+    string_2 = 'Kleks'
+    string_3 = 'Mucholot'
+    hashtable.add(string_1)
+    hashtable.add(string_2)
+    hashtable.add(string_3)
+
+    hashtable.clear()
+    hashtable.add(string_1)
+    hashtable.add(string_2)
+
+    assert string_1 in hashtable
+    assert string_2 in hashtable
