@@ -77,7 +77,7 @@ def test_hashtableiterator_next():
 
     assert strings == {string_1, string_2, string_3}
 
-def test_hashtableiterator_iteratrion_by_for():
+def test_hashtableiterator_iteratrion_by_for_loop():
     hashtable = Hashtable()
     string_1 = 'Ambroży'
     string_2 = 'Kleks'
