@@ -126,3 +126,21 @@ def test_hashtable_clear_vol_2():
 
     assert string_1 in hashtable
     assert string_2 in hashtable
+    assert string_3 not in hashtable
+
+
+def test_hashtable_clear_vol_3():
+    rows = 10
+    columns = 3
+    hashtable = Hashtable(rows, columns)
+    string_1 = 'Ambroży'
+    string_2 = 'Kleks'
+    string_3 = 'Mucholot'
+    hashtable.add(string_1)
+    hashtable.add(string_2)
+    hashtable.add(string_3)
+
+    hashtable.clear()
+    
+    assert hashtable._number_of_rows == rows
+    assert hashtable._number_of_columns == columns
