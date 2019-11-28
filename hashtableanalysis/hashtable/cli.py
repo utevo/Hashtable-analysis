@@ -103,7 +103,7 @@ def benchmark(input, output, initial_number_of_words, step,
     t_values = []
     for number_of_words in n_values:
 
-        t_instances_values = []
+        t_values_of_instances = []
         for __ in range(number_of_instances):
             hashtable = Hashtable(10000, 50)
 
@@ -112,11 +112,11 @@ def benchmark(input, output, initial_number_of_words, step,
                                                            word_generator, hashtable)
             end_time = time.time()
 
-            t_instance_value = end_time - start_time
-            t_instances_values.append(t_instance_value)
+            t_value_of_instance = end_time - start_time
+            t_values_of_instances.append(t_value_of_instance)
             
-        mean_of_t_instances_values = statistics.mean(t_instances_values)
-        t_values.append(mean_of_t_instances_values)
+        mean_of_t_values_of_instances = statistics.mean(t_values_of_instances)
+        t_values.append(mean_of_t_values_of_instances)
 
     
     # t(n) = O(n) =>  T(n) = n
