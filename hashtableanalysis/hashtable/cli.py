@@ -19,15 +19,19 @@ def add_n_elemnts_from_word_generator_to_hashtable(number_of_words,
 
 
 @click.group()
+@click.argument('rows', type=click.INT)
+@click.argument('columns', type=click.INT)
 @click.version_option(version=__version__)
-def cli():
-    pass
+@click.pass_context
+def cli(context, rows, columns):
+    context.obj = Hashtable(rows, columns)
 
 
 @click.command()
 @click.argument('input', type=click.File('r'))
 @click.argument('output', type=click.File('w'))
-def io(input, output):
+@click.pass_obj
+def io(hashtable, input, output):
     """Pobiera słowa z INPUT. Potem dodaje je wszystkie do tablicy
     mieszającej. Następnie na OUTPUT zostaje wygenerowany wewnętrzny
     stan tablicy mieszającej.
@@ -38,7 +42,6 @@ def io(input, output):
     """
     text = input.read()
     words = text.split('\n')
-    hashtable = Hashtable()
 
     for word in words:
         hashtable.add(word)
