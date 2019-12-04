@@ -87,6 +87,7 @@ def benchmark(hashtable, input, output, initial_number_of_words, step,
     NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
 
     Args:
+    
         input (file): Plik na podstawie którego będą generowane dane.
         output (file): Plik do którego zostanie przekazany wynik.
         initial_number_of_words (int): Początkowa wartość NUMBER_OF_WORDS.
