@@ -44,19 +44,19 @@ Program główny:
 
   hashtable [OPTIONS] ROWS COLUMNS COMMAND [ARGS]
 
+Tworzy tablicę mieszającą posiadającą ROWS wierszy oraz
+COLUMNS column.
 
-Argumenty:
-----------
+**Args:**
 
-- ROWS - ilość wierszy w tablicy mieszającej
-- COLUMNS - ilość kolumn w tablicy mieszającej
-- COMMAND - konretne komenda aplikacji
+- rows (int): Ilość wierszy tablicy mieszającej.
+- columns (int): Ilość kolumn tablicy mieszającej.
 
 Komendy:
 --------
 
 IO:
-^^^
+"""
 .. code-block:: bash
 
   hashtable [OPTIONS] ROWS COLUMNS io [OPTIONS] INPUT OUTPUT
@@ -65,12 +65,44 @@ Pobiera słowa z INPUT. Potem dodaje je wszystkie do tablicy mieszającej.
 Następnie na OUTPUT zostaje wygenerowany wewnętrzny stan tablicy
 mieszającej.
 
-Pobiera słowa z pliku foo.txt i zwraca wynik programu do pliku bar.txt:
-hashtable io foo.txt bar.txt
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
 
 
+GENERATE:
+"""""""""
+.. code-block:: bash
+
+  hashtable [OPTIONS] ROWS COLUMNS generate [OPTIONS] INPUT OUTPUT NUMBER_OF_WORDS
+
+Generuje NUMBER_OF_WORDS słow na podstawie INPUT. Potem dodaje je
+wszystkie do tablicy mieszającej. Następnie na OUTPUT zostaje
+wygenerowany wewnętrzny stan tablicy mieszającej.
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+- number_of_words (int): Liczba generowanych słów.
 
 
+BENCHMARK:
+"""""""""
+.. code-block:: bash
 
+  hashtable [OPTIONS] ROWS COLUMNS benchmark [OPTIONS] INPUT OUTPUT INITIAL_NUMBER_OF_WORDS STEP NUMBER_OF_PROBLEMS NUMBER_OF_INSTANCES
 
+Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości
+NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+- initial_number_of_words (int): Początkowa wartość NUMBER_OF_WORDS.
+- step (int): Krok o ile będzie zwiększana wartość NUMBER_OF_WORDS.
+- number_of_problems (int): Ilość rozwiązywanych problemów.
+- number_of_insances (int): Ilość instancji problemu.
 
