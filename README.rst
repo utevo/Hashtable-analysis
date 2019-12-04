@@ -148,10 +148,10 @@ Tablica mieszająca przechowuje napisy i ich hash'e w tablicy dwuwymiarowej.
 Elementy kolidujące zapisywane są w lokalizacjach H[k,0], H[k,1], itd.
 Przekroczenie przez drugi indeks rozmiaru tablicy odrzuca element.
 
+
 ****************
 Moduły źródłowe:
 ****************
-
 **hashtableanalysis/**
 
 Pakiet główny. Zawiera 3 inne pakiety:
@@ -164,3 +164,20 @@ Pakiet odpowiedzalny za generowanie słów.
 
 - **hashtable/**
 Pakiet odpowiedzalny za tablicę mieszającej, funckję mieszającą oraz główny program CLI.
+
+
+***************************
+Wykorzystywane technologie:
+***************************
+* Język - python3
+* Biblioteki - pandas, click, sphinx, pytest
+
+
+*********************
+Informacje dodatkowe:
+*********************
+
+Zachowanie w warunkach brzegowych:
+==================================
+* Jeżeli dodanie napisu nie jest możliwe ponieważ tablica jest pełna rzucany jest odpowiedni wyjątek.
+* Jeżeli usunięcie napisu nie jest możliwe ponieważ danego napisu nie ma rzucany jesty odpowiedni wyjątek.
