@@ -10,18 +10,18 @@ from hashtableanalysis.hashtable.hashfunctions import (
 
 
 class HashtableRecord:
-    hash: int
+    hash_: int
     value: str
 
-    def __init__(self, hash: int, value: str):
-        self.hash = hash
+    def __init__(self, hash_: int, value: str):
+        self.hash_ = hash_
         self.value = value
 
     def __eq__(self, other: HashtableRecord) -> bool:
         if not isinstance(other, HashtableRecord):
             return False
 
-        is_hash_eq = self.hash == other.hash
+        is_hash_eq = self.hash_ == other.hash_
         is_value_eq = self.value == other.value
         return is_hash_eq and is_value_eq
 
@@ -106,9 +106,9 @@ class Hashtable(abc.Set):
         self._len = 0
 
     def add(self, string: str) -> None:
-        hash = self._hash_funcion(string)
-        new_hash_record = HashtableRecord(hash, string)
-        row = hash % self._number_of_rows
+        hash_ = self._hash_funcion(string)
+        new_hash_record = HashtableRecord(hash_, string)
+        row = hash_ % self._number_of_rows
 
         try:
             column_of_first_free_record = self._cells[row].index(None)
@@ -120,9 +120,9 @@ class Hashtable(abc.Set):
         self._len += 1
 
     def _indexes(self, string: str) -> Tuple[int, int]:
-        hash = self._hash_funcion(string)
-        searched_hash_record = HashtableRecord(hash, string)
-        row = hash % self._number_of_rows
+        hash_ = self._hash_funcion(string)
+        searched_hash_record = HashtableRecord(hash_, string)
+        row = hash_ % self._number_of_rows
 
         try:
             column_of_searched_hash_record = self._cells[row].index(searched_hash_record)
