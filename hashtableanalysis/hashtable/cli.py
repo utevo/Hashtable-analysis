@@ -24,6 +24,14 @@ def add_n_elemnts_from_word_generator_to_hashtable(number_of_words,
 @click.version_option(version=__version__)
 @click.pass_context
 def cli(context, rows, columns):
+    """Tworzy tablicę mieszającą posiadającą ROWS wierszy oraz
+    COLUMNS column.
+
+    Args:
+
+        rows (int): Ilość wierszy tablicy mieszającej.
+        columns (int): Ilość kolumn tablicy mieszającej.
+    """
     context.obj = Hashtable(rows, columns)
 
 
