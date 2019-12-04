@@ -99,7 +99,8 @@ def generate(hashtable, input, output, number_of_words):
 def benchmark(hashtable, input, output, initial_number_of_words, step,
               number_of_problems, number_of_instances):
     """Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości 
-    NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
+    NUMBER_OF_WORDS. Na OUTPUT zostaje wygenerowana tabelka porównująca 
+    czas działania funckji ze złożonością teoretyczną.
 
     Args:
     
