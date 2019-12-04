@@ -106,3 +106,44 @@ NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
 - number_of_problems (int): Ilość rozwiązywanych problemów.
 - number_of_insances (int): Ilość instancji problemu.
 
+
+**************************
+Krótki opis implementacji:
+**************************
+
+Oczyszczacz tekstu:
+===================
+Algorytm:
+---------
+
+1. Podziel tekst na pojedyńcze słowa
+2. Dla każdego słowa
+    1. Usuń znaki które nie są literami z początku słowa
+    2. Usuń znaki które nie są literami z końca słowa
+3. Zwróć słowa składające się tylko ze znaków
+
+
+Generator słów:
+===============
+Na podstawie danej listy słów generator zwraca z jednakowyn rozkładem
+każde ze słów.
+
+
+Funkcja mieszająca:
+===================
+Zastosowana zostanie tak zwana "wielomianowa mieszająca funkcja krocząca" (ang. polynomial rolling hash function).
+::
+
+  hash(s) = s[0] + s[1] * p + s[2] * p^2 + ... + s[n-1] * p^(n-1) mod m
+
+- s - napis dla którego chcemy wyliczyć wartość skrótu
+- n - długość napisu s
+- m - duża stała
+- p - duża stała
+
+
+Tablica mieszająca:
+===================
+Tablica mieszająca przechowuje napisy i ich hash'e w tablicy dwuwymiarowej.
+Elementy kolidujące zapisywane są w lokalizacjach H[k,0], H[k,1], itd.
+Przekroczenie przez drugi indeks rozmiaru tablicy odrzuca element.
