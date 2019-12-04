@@ -60,6 +60,12 @@ def generate(hashtable, input, output, number_of_words):
     """Generuje NUMBER_OF_WORDS słow na podstawie INPUT. Potem dodaje je
     wszystkie do tablicy mieszającej. Następnie na OUTPUT zostaje 
     wygenerowany wewnętrzny stan tablicy mieszającej.
+
+    Args:
+    
+        input (file): Plik na podstawie którego będą generowane dane.
+        output (file): Plik do którego zostanie przekazany wynik.
+        number_of_words (int): Liczba generowanych słów.
     """
     text = input.read()
     words = cleartext(text)
