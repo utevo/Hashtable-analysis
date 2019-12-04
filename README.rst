@@ -147,3 +147,19 @@ Tablica mieszająca:
 Tablica mieszająca przechowuje napisy i ich hash'e w tablicy dwuwymiarowej.
 Elementy kolidujące zapisywane są w lokalizacjach H[k,0], H[k,1], itd.
 Przekroczenie przez drugi indeks rozmiaru tablicy odrzuca element.
+
+****************
+Moduły źródłowe:
+****************
+
+**hashtableanalysis/**
+Pakiet główny. Zawiera 3 inne pakiety:
+
+- **cleartext/**
+Pakiet odpowiedzialny za oczyszczanie tekstów.
+
+- **wordgenerator/**
+Pakiet odpowiedzalny za generowanie słów.
+
+- **hashtable/**
+Pakiet odpowiedzalny za tablicę mieszającej, funckję mieszającą oraz główny program CLI.
