@@ -131,7 +131,7 @@ każde ze słów.
 
 Funkcja mieszająca:
 ===================
-Zastosowana zostanie tak zwana "wielomianowa mieszająca funkcja krocząca" (ang. polynomial rolling hash function).
+Zastosowana została tak zwana "wielomianowa mieszająca funkcja krocząca" (ang. polynomial rolling hash function).
 ::
 
   hash(s) = s[0] + s[1] * p + s[2] * p^2 + ... + s[n-1] * p^(n-1) mod m
@@ -153,6 +153,7 @@ Moduły źródłowe:
 ****************
 
 **hashtableanalysis/**
+
 Pakiet główny. Zawiera 3 inne pakiety:
 
 - **cleartext/**
