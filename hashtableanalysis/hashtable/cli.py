@@ -36,9 +36,10 @@ def io(hashtable, input, output):
     mieszającej. Następnie na OUTPUT zostaje wygenerowany wewnętrzny
     stan tablicy mieszającej.
 
-    \b
-    Pobiera słowa z pliku foo.txt i zwraca wynik programu do pliku bar.txt:
-        hashtable io foo.txt bar.txt
+    Args:
+    
+        input (file): Plik na podstawie którego będą generowane dane.
+        output (file): Plik do którego zostanie przekazany wynik.
     """
     text = input.read()
     words = text.split('\n')
