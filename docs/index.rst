@@ -171,6 +171,46 @@ Obliczenia: w * k * 1 = w * k
 Złożoność: O(w*k)
 
 
+*******************************
+Eksperyment pomiarowy:
+*******************************
+**Algorytm:** 
+
+Dodanie n słów do tablicy mieszającej.
+
+**Teoretyczna złożoność algorytmu:**
+
+O(n)
+
+**Komenda:**
+
+.. code-block:: bash
+
+  python -m hashtableanalysis.hashtable 1000 100 benchmark pan-tadeusz.txt - 500 100 10 100
+
+**Wynik:**
+
+=  ====  ========  ========
+i    n      t(n)      q(n)
+=  ====  ========  ========
+0   500  0.002382  0.953383
+1   600  0.002671  0.891126
+2   700  0.003317  0.948440
+3   800  0.003878  0.970282
+4   900  0.004182  0.930067
+5  1000  0.004996  1.000000
+6  1100  0.005341  0.971885
+7  1200  0.005745  0.958225
+8  1300  0.006273  0.965810
+9  1400  0.007205  1.030163
+=  ====  ========  ========
+
+**Wnioski:**
+
+Czasy wykonywania algorytmu jest zgodny z teoretyczną złożonością algorytmu. 
+Niewielkie odchylenia wartości q(n) są spowodowanie przez m.in sposób implementacji interpretera CPythona.
+
+
 ***************************************
 Opis zachowania w warunkach brzegowych:
 ***************************************
@@ -259,7 +299,7 @@ Generator napisów:
 ##################
 .. code-block:: bash
 
-  wordgenerator [OPTIONS] INPUT OUTPUT
+  wordgenerator [OPTIONS] INPUT OUTPUT NUMBER_OF_WORDS
 
 **Args:**
 
@@ -311,7 +351,6 @@ Wykorzystywane technologie:
 ******************
 Sposób instalacji:
 ******************
-
 Wymagania:
 
 - python3
@@ -321,3 +360,17 @@ Instalacja:
 
 #. pip install --user poetry
 #. poetry install
+ 
+
+*************************
+Przykłady uruchomienia:
+*************************
+.. code-block:: bash
+
+  python -m hashtableanalysis.hashtable 1000 100 benchmark pan-tadeusz.txt - 500 100 10 100
+.. code-block:: bash
+
+  python -m hashtableanalysis.cleartext 200 10 - -
+.. code-block:: bash
+
+  python -m hashtableanalysis.wordgenerator 300 50 pan-tadeusz.txt - 100 
