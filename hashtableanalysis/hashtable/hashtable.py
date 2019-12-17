@@ -172,13 +172,14 @@ class HashtableViewer:
     def low_level(self) -> pd.DataFrame:
         values = []
         rows = []
+        
         columns = []
         hashes = []
         for record, row, column in HashatbleLowLevelIterator(self._hashtable):
             values.append(record.value)
             rows.append(row)
             columns.append(column)
-            hashes.append(record.hash)
+            hashes.append(record.hash_)
         
         data = {'value': values, 'row': rows, 'column': columns, 'hash': hashes}
         df = pd.DataFrame(data)
