@@ -205,6 +205,9 @@ i    n      t(n)      q(n)
 9  1400  0.007205  1.030163
 =  ====  ========  ========
 
+.. image:: images/wynik_eksperymentu.png
+  :width: 800
+
 **Wnioski:**
 
 Czasy wykonywania algorytmu jest zgodny z teoretyczną złożonością algorytmu. 
@@ -276,7 +279,7 @@ wygenerowany wewnętrzny stan tablicy mieszającej.
 
 
 BENCHMARK:
-"""""""""
+""""""""""
 .. code-block:: bash
 
   hashtable [OPTIONS] ROWS COLUMNS benchmark [OPTIONS] INPUT OUTPUT INITIAL_NUMBER_OF_WORDS STEP NUMBER_OF_PROBLEMS NUMBER_OF_INSTANCES
