@@ -265,6 +265,7 @@ Generator napisów:
 
 - input (file): Plik na podstawie którego będą generowane dane.
 - output (file): Plik do którego zostanie przekazany wynik.
+- number_of_words (int): Ilość generowanych słów.
 
 
 ############################
@@ -272,13 +273,12 @@ Program oczyszczający tekst:
 ############################
 .. code-block:: bash
 
-  cleartext [--version] [--help]
+  cleartext [OPTIONS] INPUT OUTPUT
 
 **Args:**
 
 - input (file): Plik na podstawie którego będą generowane dane.
 - output (file): Plik do którego zostanie przekazany wynik.
-- number_of_words (int): Ilość generowanych słów.
 
 
 ****************
