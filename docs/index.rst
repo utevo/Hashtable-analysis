@@ -306,3 +306,18 @@ Wykorzystywane technologie:
 ***************************
 * Język - python3
 * Biblioteki - pandas, click, sphinx, pytest
+
+
+******************
+Sposób instalacji:
+******************
+
+Wymagania:
+
+- python3
+- pip
+
+Instalacja:
+
+#. pip install --user poetry
+#. poetry install
