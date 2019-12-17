@@ -123,7 +123,7 @@ komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdażen
 Pesymistyczna złożoność: O(n)
 
 
-**Usuwanie:**
+**Usuwanie elementu:**
 
 Żeby usunąć dany element najpierw musi wyznaczyć wartość funkcji skrótu dla tego słowa. Jako że napisy
 posiadają ograniczenie na długość to złożoność liczenia wartości funckji mieszającej wynosi O(1).
