@@ -259,7 +259,7 @@ Generator napisów:
 ##################
 .. code-block:: bash
 
-  strgeneratorcli [OPTIONS] INPUT OUTPUT
+  wordgenerator [OPTIONS] INPUT OUTPUT
 
 **Args:**
 
@@ -272,7 +272,7 @@ Program oczyszczający tekst:
 ############################
 .. code-block:: bash
 
-  textcleanercli [--version] [--help]
+  cleartext [--version] [--help]
 
 **Args:**
 
