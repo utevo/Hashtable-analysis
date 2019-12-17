@@ -118,7 +118,7 @@ Obliczenia: 1 * 1 * 1 = 1
 
 
 Istnieje też możliwość że wszystkie napisy zostały dodane do tego samego wiersza. Wtedy znalezienie pierwszej wolnej
-komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdażenie jest wielce nieprawdopodobne
+komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdażenie jest wielce nieprawdopodobne.
 
 Pesymistyczna złożoność: O(n)
 
@@ -137,7 +137,28 @@ Obliczenia: 1 * 1 * 1 * 1 = 1
 
 
 Istnieje też możliwość że wszystkie napisy zostały dodane do tego samego wiersza. Wtedy znalezienie komórki w której 
-znajduje się usuwany napis może wymagać n (ilość elementów w tablicy) operacji.  Takie zdażenie jest wielce nieprawdopodobne
+znajduje się usuwany napis może wymagać n (ilość elementów w tablicy) operacji. Takie zdażenie jest wielce nieprawdopodobne.
 
 Pesymistyczna złożoność: O(n)
 
+
+**Dodanie x elementów:**
+
+Jako że średnia złożoność dodania jednego elementu wynosi O(1) to średnia złożoność dodanie x elementów to O(x).
+
+Obliczenia: 1 * x = x
+Średnia złożoność: O(x)
+
+Istnieje też możliwość że wszystkie napisy zostaną dodane do tego samego wiersza. Takie zdażenie jest wielce nieprawdopodobne.
+
+Obliczenia: 1 + 2 + 3 + ... + (x - 1) + x = (x + 1) * x / 2
+Pesymistyczna złożoność: O(x**2)
+
+
+**Enumeracja tablicy:**
+
+W celu pełnej enumeracji przechodzimy po kolei po wszystkich komórkach tablicy. Wierszy jest 'w', a kolumn 'k'. Przejście do
+następnej komórki wymaga stałej ilości operacji.
+
+Obliczenia: n * k * 1 = n * k
+Złożoność: O(n*k)
