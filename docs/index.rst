@@ -166,9 +166,9 @@ Pesymistyczna złożoność: O(x**2)
 W celu pełnej enumeracji przechodzimy po kolei po wszystkich komórkach tablicy. Wierszy jest 'w', a kolumn 'k'. Przejście do
 następnej komórki wymaga stałej ilości operacji.
 
-Obliczenia: n * k * 1 = n * k
+Obliczenia: w * k * 1 = w * k
 
-Złożoność: O(n*k)
+Złożoność: O(w*k)
 
 
 ***************************************
