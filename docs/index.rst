@@ -9,7 +9,7 @@ HashtableAnalysis dokumentacja
 ******
 Autor:
 ******
-Michał Kowieski 293130
+Michał Kowieski, 293130
 
 **************
 Treść zadania:
@@ -47,7 +47,7 @@ Oczyszczacz tekstu:
 ###################
 **Algorytm:**
 
-1. Podziel tekst na pojedyńcze słowa
+1. Podziel tekst na pojedyncze słowa
 2. Dla każdego słowa
     1. Usuń znaki które nie są literami z początku słowa
     2. Usuń znaki które nie są literami z końca słowa
@@ -56,7 +56,7 @@ Oczyszczacz tekstu:
 ###############
 Generator słów:
 ###############
-Na podstawie danej listy słów generator zwraca z jednakowyn rozkładem
+Na podstawie danej listy słów generator zwraca z jednakowym rozkładem
 każde ze słów.
 
 ###################
@@ -88,7 +88,7 @@ Analiza złożoności:
 Funkcja mieszająca:
 ###################
 Wyliczanie wartości funkcji mieszającej polega na iteracji po wszystkich literach słowa.
-Pojedyńczy krok wymaga stałą ilość operacji.
+Pojedynczy krok wymaga stałą ilość operacji.
 
 Obliczenia: 1 * n = n
 
@@ -109,9 +109,9 @@ Założenia:
 **Dodawanie jednego elementu:**
 
 Żeby dodwać dany element najpierw musi wyznaczyć wartość funkcji skrótu dla tego słowa. Jako że napisy
-posiadają ograniczenie na długość to złożoność liczenia wartości funckji mieszającej wynosi O(1).
-Z wyliczonej wartości okreśmamy wiersz w którym ma znaleść się nasz napis. Ta operacja ma złożoność 0(1).
-Teraz musimy znaleść pierwszą wolną komórkę tablicy. Jako że współczynnik załadowania jest mnieszy od 1 to
+posiadają ograniczenie na długość to złożoność liczenia wartości funkcji mieszającej wynosi O(1).
+Z wyliczonej wartości określamy wiersz w którym ma znaleźć się nasz napis. Ta operacja ma złożoność 0(1).
+Teraz musimy znaleźć pierwszą wolną komórkę tablicy. Jako że współczynnik załadowania jest mnieszy od 1 to
 średni numer pierwszej wolnej komórki jest mniejszy od 1, a z tego wynika że koszt tej operacji wynosi średnio O(1).
 
 Obliczenia: 1 * 1 * 1 = 1
@@ -120,7 +120,7 @@ Obliczenia: 1 * 1 * 1 = 1
 
 
 Istnieje też możliwość że wszystkie napisy zostały dodane do tego samego wiersza. Wtedy znalezienie pierwszej wolnej
-komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdażenie jest wielce nieprawdopodobne.
+komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdarzenie jest wielce nieprawdopodobne.
 
 Pesymistyczna złożoność: O(n)
 
@@ -128,9 +128,9 @@ Pesymistyczna złożoność: O(n)
 **Usuwanie jednego elementu:**
 
 Żeby usunąć dany element najpierw musi wyznaczyć wartość funkcji skrótu dla tego słowa. Jako że napisy
-posiadają ograniczenie na długość to złożoność liczenia wartości funckji mieszającej wynosi O(1).
-Z wyliczonej wartości okreśmamy wiersz w którym ma znaleść się nasz napis. Ta operacja ma złożoność 0(1).
-Teraz musimy znaleść pierwszą komórkę tablicy w której znajude się dany napis. Złożoność sprawdzenia czy
+posiadają ograniczenie na długość to złożoność liczenia wartości funkcji mieszającej wynosi O(1).
+Z wyliczonej wartości określamy wiersz w którym ma znaleźć się nasz napis. Ta operacja ma złożoność 0(1).
+Teraz musimy znaleźć pierwszą komórkę tablicy w której znajude się dany napis. Złożoność sprawdzenia czy
 napisy są równe wynosi O(1) (z powodu oganiczonej długości). Jako że wartość współczynnika załadowania
 jest mniejsza od 1 to średnia wartość wiersza szukanangeo napisu też jest mniejsza od 1.
 
@@ -140,7 +140,7 @@ Obliczenia: 1 * 1 * 1 * 1 = 1
 
 
 Istnieje też możliwość że wszystkie napisy zostały dodane do tego samego wiersza. Wtedy znalezienie komórki w której 
-znajduje się usuwany napis może wymagać n (ilość elementów w tablicy) operacji. Takie zdażenie jest wielce nieprawdopodobne.
+znajduje się usuwany napis może wymagać n (ilość elementów w tablicy) operacji. Takie zdarzenie jest wielce nieprawdopodobne.
 
 Pesymistyczna złożoność: O(n)
 
@@ -154,7 +154,7 @@ Obliczenia: 1 * x = x
 Średnia złożoność: O(x)
 
 
-Istnieje też możliwość że wszystkie napisy zostaną dodane do tego samego wiersza. Takie zdażenie jest wielce nieprawdopodobne.
+Istnieje też możliwość że wszystkie napisy zostaną dodane do tego samego wiersza. Takie zdarzenie jest wielce nieprawdopodobne.
 
 Obliczenia: 1 + 2 + 3 + ... + (x - 1) + x = (x + 1) * x / 2
 
@@ -176,7 +176,7 @@ Opis zachowania w warunkach brzegowych:
 ***************************************
 * Jeżeli dodanie napisu nie jest możliwe ponieważ tablica w wymiarze N jest pełna rzucany jest odpowiedni wyjątek.
 * Jeżeli istnieje już dany napis w tablicy rzucany jest odpowiedni wyjątek.
-* Jeżeli usunięcie napisu nie jest możliwe ponieważ danego napisu nie ma rzucany jesty odpowiedni wyjątek.
+* Jeżeli usunięcie napisu nie jest możliwe ponieważ danego napisu nie ma rzucany jest odpowiedni wyjątek.
 
 
 ************************
@@ -241,7 +241,7 @@ BENCHMARK:
 
   hashtable [OPTIONS] ROWS COLUMNS benchmark [OPTIONS] INPUT OUTPUT INITIAL_NUMBER_OF_WORDS STEP NUMBER_OF_PROBLEMS NUMBER_OF_INSTANCES
 
-Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości
+Wykonuje funkcję generate z pomiarem czasu dla rosnącej wartości
 NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
 
 **Args:**
@@ -294,11 +294,11 @@ Pakiet odpowiedzialny za oczyszczanie tekstów.
 
 **wordgenerator/**
 
-Pakiet odpowiedzalny za generowanie słów.
+Pakiet odpowiedzialny za generowanie słów.
 
 **hashtable/**
 
-Pakiet odpowiedzalny za tablicę mieszającej, funckję mieszającą oraz główny program CLI.
+Pakiet odpowiedzialny za tablicę mieszającej, funkcję mieszającą oraz główny program CLI.
 
 
 ***************************
