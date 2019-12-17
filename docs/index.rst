@@ -91,6 +91,7 @@ Wyliczanie wartości funkcji mieszającej polega na iteracji po wszystkich liter
 Pojedyńczy krok wymaga stałą ilość operacji.
 
 Obliczenia: 1 * n = n
+
 Złożoność: O(n)
 
 - n - długość słowa
@@ -105,7 +106,7 @@ Założenia:
 - Wartość współczynnika załadowania (ilość elementów tablicy / ilość wierszy tablicy) jest mniejsza od 1
 
 
-**Dodawanie elementu:**
+**Dodawanie jednego elementu:**
 
 Żeby dodwać dany element najpierw musi wyznaczyć wartość funkcji skrótu dla tego słowa. Jako że napisy
 posiadają ograniczenie na długość to złożoność liczenia wartości funckji mieszającej wynosi O(1).
@@ -114,6 +115,7 @@ Teraz musimy znaleść pierwszą wolną komórkę tablicy. Jako że współczynn
 średni numer pierwszej wolnej komórki jest mniejszy od 1, a z tego wynika że koszt tej operacji wynosi średnio O(1).
 
 Obliczenia: 1 * 1 * 1 = 1
+
 Średnia złożoność: O(1)
 
 
@@ -123,7 +125,7 @@ komórki może wymagać n (ilość elementów w tablicy) operacji. Takie zdażen
 Pesymistyczna złożoność: O(n)
 
 
-**Usuwanie elementu:**
+**Usuwanie jednego elementu:**
 
 Żeby usunąć dany element najpierw musi wyznaczyć wartość funkcji skrótu dla tego słowa. Jako że napisy
 posiadają ograniczenie na długość to złożoność liczenia wartości funckji mieszającej wynosi O(1).
@@ -133,6 +135,7 @@ napisy są równe wynosi O(1) (z powodu oganiczonej długości). Jako że warto�
 jest mniejsza od 1 to średnia wartość wiersza szukanangeo napisu też jest mniejsza od 1.
 
 Obliczenia: 1 * 1 * 1 * 1 = 1
+
 Średnia złożoność: O(1)
 
 
@@ -142,16 +145,19 @@ znajduje się usuwany napis może wymagać n (ilość elementów w tablicy) oper
 Pesymistyczna złożoność: O(n)
 
 
-**Dodanie x elementów:**
+**Dodanie X elementów:**
 
 Jako że średnia złożoność dodania jednego elementu wynosi O(1) to średnia złożoność dodanie x elementów to O(x).
 
 Obliczenia: 1 * x = x
+
 Średnia złożoność: O(x)
+
 
 Istnieje też możliwość że wszystkie napisy zostaną dodane do tego samego wiersza. Takie zdażenie jest wielce nieprawdopodobne.
 
 Obliczenia: 1 + 2 + 3 + ... + (x - 1) + x = (x + 1) * x / 2
+
 Pesymistyczna złożoność: O(x**2)
 
 
@@ -161,4 +167,142 @@ W celu pełnej enumeracji przechodzimy po kolei po wszystkich komórkach tablicy
 następnej komórki wymaga stałej ilości operacji.
 
 Obliczenia: n * k * 1 = n * k
+
 Złożoność: O(n*k)
+
+
+***************************************
+Opis zachowania w warunkach brzegowych:
+***************************************
+* Jeżeli dodanie napisu nie jest możliwe ponieważ tablica w wymiarze N jest pełna rzucany jest odpowiedni wyjątek.
+* Jeżeli istnieje już dany napis w tablicy rzucany jest odpowiedni wyjątek.
+* Jeżeli usunięcie napisu nie jest możliwe ponieważ danego napisu nie ma rzucany jesty odpowiedni wyjątek.
+
+
+************************
+Korzystanie z  programu:
+************************
+
+###############
+Program główny:
+###############
+
+.. code-block:: bash
+
+  hashtable [OPTIONS] ROWS COLUMNS COMMAND [ARGS]
+
+Tworzy tablicę mieszającą posiadającą ROWS wierszy oraz
+COLUMNS column.
+
+**Args:**
+
+- rows (int): Ilość wierszy tablicy mieszającej.
+- columns (int): Ilość kolumn tablicy mieszającej.
+
+Komendy:
+--------
+
+IO:
+"""
+.. code-block:: bash
+
+  hashtable [OPTIONS] ROWS COLUMNS io [OPTIONS] INPUT OUTPUT
+
+Pobiera słowa z INPUT. Potem dodaje je wszystkie do tablicy mieszającej.
+Następnie na OUTPUT zostaje wygenerowany wewnętrzny stan tablicy
+mieszającej.
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+
+
+GENERATE:
+"""""""""
+.. code-block:: bash
+
+  hashtable [OPTIONS] ROWS COLUMNS generate [OPTIONS] INPUT OUTPUT NUMBER_OF_WORDS
+
+Generuje NUMBER_OF_WORDS słow na podstawie INPUT. Potem dodaje je
+wszystkie do tablicy mieszającej. Następnie na OUTPUT zostaje
+wygenerowany wewnętrzny stan tablicy mieszającej.
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+- number_of_words (int): Liczba generowanych słów.
+
+
+BENCHMARK:
+"""""""""
+.. code-block:: bash
+
+  hashtable [OPTIONS] ROWS COLUMNS benchmark [OPTIONS] INPUT OUTPUT INITIAL_NUMBER_OF_WORDS STEP NUMBER_OF_PROBLEMS NUMBER_OF_INSTANCES
+
+Wykonuje funckję generate z pomiarem czasu dla rosnącej wartości
+NUMBER_OF_WORDS. Przeprowadza porównanie ze słożonością teoretyczną.
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+- initial_number_of_words (int): Początkowa wartość NUMBER_OF_WORDS.
+- step (int): Krok o ile będzie zwiększana wartość NUMBER_OF_WORDS.
+- number_of_problems (int): Ilość rozwiązywanych problemów.
+- number_of_insances (int): Ilość instancji problemu.
+
+
+##################
+Generator napisów:
+##################
+.. code-block:: bash
+
+  strgeneratorcli [OPTIONS] INPUT OUTPUT
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+
+
+############################
+Program oczyszczający tekst:
+############################
+.. code-block:: bash
+
+  textcleanercli [--version] [--help]
+
+**Args:**
+
+- input (file): Plik na podstawie którego będą generowane dane.
+- output (file): Plik do którego zostanie przekazany wynik.
+- number_of_words (int): Ilość generowanych słów.
+
+
+****************
+Moduły źródłowe:
+****************
+**hashtableanalysis/**
+
+Pakiet główny. Zawiera 3 inne pakiety:
+
+**cleartext/**
+
+Pakiet odpowiedzialny za oczyszczanie tekstów.
+
+**wordgenerator/**
+
+Pakiet odpowiedzalny za generowanie słów.
+
+**hashtable/**
+
+Pakiet odpowiedzalny za tablicę mieszającej, funckję mieszającą oraz główny program CLI.
+
+
+***************************
+Wykorzystywane technologie:
+***************************
+* Język - python3
+* Biblioteki - pandas, click, sphinx, pytest
